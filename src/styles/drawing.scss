@@ -1,0 +1,33 @@
+$radius: 4px;
+$backColor: #333;
+
+.drag-card {
+  box-sizing: border-box;
+  background: #f0f0f0;
+  border: 1px solid $backColor;
+  border-radius: $radius;
+  font-size: 12px;
+  &__handle {
+    cursor: move;
+    height: 18px;
+    background: $backColor;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    text-align: right;
+  }
+  &__content {
+    width: 152px;
+    padding: 2px;
+  }
+  &__img {
+    border-bottom-left-radius: $radius - 1px;
+  }
+  &__header {
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.1;
+    margin-bottom: 5px;
+  }
+}

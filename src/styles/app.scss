@@ -1,0 +1,402 @@
+$sunYellow: rgb(255, 203, 5);
+$mainGreen: rgb(43, 96, 48);
+$grassGreen: rgb(35, 132, 65);
+$appleGreen: rgb(106, 167, 68);
+$limeGreen: rgb(166, 206, 57);
+$borderColor: #e0e0e0;
+$footerHeight: 60px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  box-sizing: border-box;
+  position: absolute;
+  height: $footerHeight;
+  border-top: 1px solid #ccc;
+  left: 0;
+  bottom: 0;
+  background: white;
+  width: 100%;
+}
+
+body {
+  min-width: 600px;
+  margin: 0 0 ($footerHeight + 20px) !important;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  background: #ddd;
+}
+
+.container-custom {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-custom {
+  background: $mainGreen;
+  height: 50px;
+  width: 100%;
+  min-width: 600px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  &__taskName {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: white;
+    width: calc(100% - 220px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__user {
+    height: 50px;
+    line-height: 50px;
+    width: 220px;
+    text-align: right;
+  }
+}
+
+.loginWrapper {
+  width: 400px;
+  margin: 100px auto 0;
+  position: relative;
+  padding: 10px;
+  background: white;
+  border: 1px solid $borderColor;
+}
+
+.accordion_white {
+  background-color: $appleGreen !important;
+  padding: 5px !important;
+}
+
+.accordion_grey {
+  background-color: $grassGreen !important;
+  padding: 5px !important;
+}
+
+div.card {
+  box-shadow: none !important;
+}
+
+.boxWrapper {
+  &__title {
+    box-sizing: border-box;
+    height: 30px;
+    padding: 5px;
+    background: $grassGreen;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    &:hover {
+      cursor: default;
+    }
+  }
+  &__body {
+    border: 1px solid $borderColor;
+    border-top: none;
+  }
+}
+
+.error {
+  background-color: #fff;
+  padding: 10px;
+  margin: 7px 0 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgb(244, 67, 54);
+}
+
+.materialTable {
+  width: 100%;
+  border-spacing:0;
+  &--stripped {
+    tbody tr:nth-child(even) {
+      background: #eee;
+    }
+  }
+  &--hover {
+    tbody tr {
+      transition: background 0.3s;
+      &:hover {
+        cursor: pointer;
+        background: $appleGreen;
+        color: white !important;
+      }
+    }
+  }
+  thead {
+    tr {
+      border-bottom: 1px solid $borderColor;
+    }
+    th {
+      font-weight: normal;
+      padding: 5px;
+      text-align: left;
+      position: relative;
+      vertical-align: middle;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $borderColor;
+      &:last-child {
+        border-bottom: none;
+      }
+      td {
+        padding: 5px;
+        text-align: left;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.tooltip {
+  background-color: rgb(246, 199, 37) !important;
+  opacity: .97 !important;
+  color: #232323 !important;
+  border-radius: 15px !important;
+  font-size: 15px !important;
+}
+
+
+.btn-sunYellow {
+  background: $sunYellow;
+  &:focus {
+    background: $sunYellow;
+  }
+  &:hover {
+    background: darken($sunYellow, 5);
+  }
+}
+
+.bm-menu-wrap {
+  z-index: 15 !important;
+}
+
+.card {
+  margin: 5px 0;
+  > div {
+    padding-bottom: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.debtorHeader {
+  background: white;
+  margin-top: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  &__firstChild {
+    border-right: 1px solid;
+  }
+  &__valueWrapper {
+    color: $mainGreen;
+    margin-left: 10px;
+  }
+}
+
+.sortArrow {
+  padding: 3px;
+  position: relative;
+
+  &:hover {
+    background: #eee;
+    cursor: pointer;
+  }
+
+  &--up {
+    &:active {
+      bottom: 2px;
+    }
+  }
+
+  &--down {
+    &:active {
+      top: 2px;
+    }
+  }
+}
+
+
+/*small loader
+************************************/
+.loader {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: $appleGreen;
+  right: 15px;
+  bottom: 8px;
+  animation: round 1000ms infinite;
+}
+
+@keyframes round {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/**************************************/
+
+
+/*Reset bootstrap
+************************************/
+.nav-pills > li {
+  &.active {
+    > a {
+      background: $mainGreen;
+      &:hover {
+        background: $mainGreen;
+      }
+      &:focus {
+        background: $mainGreen;
+      }
+    }
+  }
+  > a {
+    background: white;
+    border-radius: 4px;
+    color: black;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background: darken(white, 7);
+    }
+  }
+  &.disabled {
+    > a {
+      color: black !important;
+    }
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+}
+
+$tabBorderWidth: 1px;
+.nav-tabs {
+  border-bottom: $tabBorderWidth solid $borderColor !important;
+  display: flex;
+  > li {
+    > a {
+      height: 100%;
+      font-size: 16px;
+      border: none;
+      margin-right: 0;
+      color: black;
+      &:hover {
+        background: white;
+        border-bottom: $tabBorderWidth solid $borderColor;
+        color: $mainGreen;
+      }
+      &:focus {
+        outline: none;
+        border-bottom: $tabBorderWidth solid $borderColor;
+      }
+    }
+    &.active {
+      margin-bottom: 0;
+      > a {
+        color: white !important;
+        border: none;
+        background: $appleGreen;
+        &:focus {
+          outline: none;
+          border: none;
+          background: $appleGreen;
+        }
+        &:hover {
+          border: none;
+          background: $appleGreen;
+        }
+      }
+    }
+    &.disabled {
+      &:hover {
+        cursor: not-allowed !important;
+      }
+    }
+  }
+}
+
+.dropdown-toggle .caret {
+  float: right;
+  margin-top: 8px;
+}
+
+.modal-open {
+  overflow: auto !important;
+  padding-right: 0 !important;
+}
+
+.fade.modal {
+  padding-right: 0 !important;
+}
+
+.pagination {
+  li.active {
+    a {
+      background: $appleGreen;
+      border-color: $appleGreen;
+      &:hover {
+        background: $appleGreen;
+        border-color: $appleGreen;
+      }
+      &:focus {
+        background: $appleGreen;
+        border-color: $appleGreen;
+      }
+    }
+  }
+}
+
+@mixin panelTitle() {
+  font-size: 20px;
+  font-weight: bold;
+  color: $mainGreen;
+}
+
+.panel {
+  border: none;
+  .panel-heading {
+    background: white;
+    padding: 5px 15px;
+    border: none;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    @include panelTitle();
+    a {
+      @include panelTitle();
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+/**************************************/
+
+
+
+@media screen and (max-width: 991px){
+
+  .debtorHeader__firstChild {
+    border-right: none;
+  }
+}
