@@ -2,9 +2,14 @@
   "name": "bankProject",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.prod.js",
   "scripts": {
-    "start": "node server"
+    "dev": "node server.js",
+    "postinstall": "webpack --config webpack.prod.config",
+    "start": "node server.prod.js"
+  },
+  "engines": {
+    "node": "6.10.0"
   },
   "author": "Sergey Filippenko",
   "license": "ISC",
@@ -51,8 +56,6 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "babel-runtime": "6.26.0",
-    "body-parser": "1.17.2",
-    "cookie-parser": "1.4.3",
     "css-loader": "0.23.1",
     "enzyme": "2.9.1",
     "express": "4.15.4",
