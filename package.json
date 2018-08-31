@@ -9,6 +9,9 @@
     "start": "node server",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
+  "engines": {
+    "node": "6.10.0"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
