@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "postinstall": "NPM_CONFIG_PRODUCTION=false npm run build",
+    "postinstall": "npm run build",
     "start": "node server"
   },
   "engines": {
