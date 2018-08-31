@@ -4,11 +4,26 @@ $grassGreen: rgb(35, 132, 65);
 $appleGreen: rgb(106, 167, 68);
 $limeGreen: rgb(166, 206, 57);
 $borderColor: #e0e0e0;
+$headerHeight: 50px;
 $footerHeight: 60px;
+$minWidth: 900px;
+$sideGap: 20px;
 
 html {
   position: relative;
   min-height: 100%;
+  min-width: $minWidth;
+}
+
+body {
+  margin: 0 0 ($footerHeight + 20px) !important;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  background: #ddd;
+}
+
+a {
+  cursor: pointer !important;
 }
 
 .footer {
@@ -22,29 +37,20 @@ html {
   width: 100%;
 }
 
-body {
-  min-width: 600px;
-  margin: 0 0 ($footerHeight + 20px) !important;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  background: #ddd;
-}
-
 .container-custom {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 $sideGap;
 }
 
 .header-custom {
   background: $mainGreen;
-  height: 50px;
+  height: $headerHeight;
   width: 100%;
-  min-width: 600px;
+  min-width: $minWidth;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 6;
   &__taskName {
     height: 50px;
     line-height: 50px;
@@ -72,41 +78,6 @@ body {
   border: 1px solid $borderColor;
 }
 
-.accordion_white {
-  background-color: $appleGreen !important;
-  padding: 5px !important;
-}
-
-.accordion_grey {
-  background-color: $grassGreen !important;
-  padding: 5px !important;
-}
-
-div.card {
-  box-shadow: none !important;
-}
-
-.boxWrapper {
-  &__title {
-    box-sizing: border-box;
-    height: 30px;
-    padding: 5px;
-    background: $grassGreen;
-    line-height: 20px;
-    font-size: 13px;
-    font-weight: bold;
-    color: white;
-    text-transform: uppercase;
-    &:hover {
-      cursor: default;
-    }
-  }
-  &__body {
-    border: 1px solid $borderColor;
-    border-top: none;
-  }
-}
-
 .error {
   background-color: #fff;
   padding: 10px;
@@ -119,21 +90,6 @@ div.card {
 .materialTable {
   width: 100%;
   border-spacing:0;
-  &--stripped {
-    tbody tr:nth-child(even) {
-      background: #eee;
-    }
-  }
-  &--hover {
-    tbody tr {
-      transition: background 0.3s;
-      &:hover {
-        cursor: pointer;
-        background: $appleGreen;
-        color: white !important;
-      }
-    }
-  }
   thead {
     tr {
       border-bottom: 1px solid $borderColor;
@@ -159,16 +115,28 @@ div.card {
       }
     }
   }
+  &--stripped {
+    tbody tr:nth-child(even) {
+      background: #eee;
+    }
+  }
+  &--hover {
+    tbody tr {
+      transition: background 0.3s;
+      &:hover {
+        cursor: pointer;
+        background: $appleGreen;
+        color: white !important;
+      }
+    }
+  }
+  &--thead-highlight {
+    thead tr {
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
+    }
+  }
 }
-
-.tooltip {
-  background-color: rgb(246, 199, 37) !important;
-  opacity: .97 !important;
-  color: #232323 !important;
-  border-radius: 15px !important;
-  font-size: 15px !important;
-}
-
 
 .btn-sunYellow {
   background: $sunYellow;
@@ -178,52 +146,58 @@ div.card {
   &:hover {
     background: darken($sunYellow, 5);
   }
-}
-
-.bm-menu-wrap {
-  z-index: 15 !important;
-}
-
-.card {
-  margin: 5px 0;
-  > div {
-    padding-bottom: 0 !important;
+  &:active {
+    background: darken($sunYellow, 5) !important;
   }
-
-  &:last-child {
-    margin-bottom: 0;
+  &[disabled]:hover {
+    background: $sunYellow;
   }
 }
 
 .debtorHeader {
-  background: white;
-  margin-top: 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  &__firstChild {
-    border-right: 1px solid;
+  position: fixed;
+  z-index: 5;
+  top: $headerHeight + 5px;
+  left: 0;
+  width: 100%;
+  min-width: $minWidth;
+  &__wrapper {
+    margin: 0 auto 5px auto;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    border-radius: 4px;
   }
   &__valueWrapper {
     color: $mainGreen;
-    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    div {
+      display: inline-block;
+      &.text-ellipsis {
+        display: inline;
+      }
+    }
+    > span:first-child {
+      margin-right: 5px;
+      color: black;
+    }
   }
 }
 
 .sortArrow {
   padding: 3px;
   position: relative;
-
   &:hover {
     background: #eee;
     cursor: pointer;
   }
-
   &--up {
     &:active {
       bottom: 2px;
     }
   }
-
   &--down {
     &:active {
       top: 2px;
@@ -231,6 +205,75 @@ div.card {
   }
 }
 
+.modal-full-width {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+}
+
+.modal-custom-md {
+  max-width: 600px;
+  width: auto;
+}
+
+.modal-custom-lg {
+  max-width: 1100px;
+  width: auto;
+}
+
+#scroll-top-area {
+  position: fixed;
+  background: #ccc;
+  top: $headerHeight;
+  left: 0;
+  height: 100%;
+  opacity: 0.5;
+  transition: background 0.2s;
+  &:hover {
+    cursor: pointer;
+    background: #999;
+  }
+}
+
+.flex-center-wrapper {
+  display: flex;
+  align-items: center;
+  > * {
+    margin-right: 10px !important;//надо
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+.huge-block {
+  margin-bottom: 80px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.medium-block {
+  margin-bottom: 40px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.scroll-x-only {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.font-bold {
+  font-weight: bold;
+}
 
 /*small loader
 ************************************/
@@ -273,11 +316,13 @@ div.card {
     background: white;
     border-radius: 4px;
     color: black;
+    padding: 5px 8px;
     &:focus {
       outline: none;
     }
     &:hover {
-      background: darken(white, 7);
+      background: white;
+      color: $mainGreen;
     }
   }
   &.disabled {
@@ -292,12 +337,14 @@ div.card {
 
 $tabBorderWidth: 1px;
 .nav-tabs {
-  border-bottom: $tabBorderWidth solid $borderColor !important;
+  background: white;
+  margin-bottom: 20px;
   display: flex;
   > li {
     > a {
       height: 100%;
       font-size: 16px;
+      padding: 15px 10px;
       border: none;
       margin-right: 0;
       color: black;
@@ -342,7 +389,6 @@ $tabBorderWidth: 1px;
 }
 
 .modal-open {
-  overflow: auto !important;
   padding-right: 0 !important;
 }
 
@@ -368,13 +414,20 @@ $tabBorderWidth: 1px;
 }
 
 @mixin panelTitle() {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: $mainGreen;
 }
 
 .panel {
   border: none;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  &--transparent {
+    background: transparent;
+    box-shadow: none;
+  }
   .panel-heading {
     background: white;
     padding: 5px 15px;
@@ -384,19 +437,29 @@ $tabBorderWidth: 1px;
     @include panelTitle();
     a {
       @include panelTitle();
+      display: block;
       &:hover {
         cursor: pointer;
       }
     }
+  }
+  .panel-body {
+    border-top: none !important;
   }
 }
 /**************************************/
 
 
 
-@media screen and (max-width: 991px){
-
-  .debtorHeader__firstChild {
-    border-right: none;
-  }
+/*Reset other
+************************************/
+.bm-menu-wrap {
+  z-index: 15 !important;
 }
+
+.type-warning {
+  color: black !important;
+  background: $sunYellow !important;
+}
+
+/**************************************/

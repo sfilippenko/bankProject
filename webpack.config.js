@@ -1,27 +1,32 @@
 const path = require('path');
 const webpack = require('webpack');
 
-
-module.exports = {
+const settings = {
     devtool: 'eval',
     entry: [
         'babel-polyfill',
         './src/index'
     ],
-    node: {
-        fs: 'empty'
-    },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+    },
     module: {
         rules: [
             {
+                enforce: 'pre',
                 test: /\.js$/,
-                include: [path.resolve(__dirname, './src')],
+                include: [path.join(__dirname, 'src')],
+                use: [{loader: 'eslint-loader'}]
+            },
+            {
+                test: /\.js$/,
+                include: [path.join(__dirname, 'src')],
                 use: [
-                    {loader: 'react-hot-loader'},
                     {
                         loader: 'babel-loader',
                         query: {cacheDirectory: true}
@@ -34,31 +39,28 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]'
+                            name: '[name].[ext]',
+                            context: __dirname
                         }
                     }
                 ]
             },
-            {test: /\.s?css$/, loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']}
+            {
+                test: /\.s?css$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {loader: 'css-loader'},
+                    {loader: 'sass-loader'},
+                    {loader: 'postcss-loader'},
+                ]
+            }
         ]
     },
     plugins: [
+        new webpack.LoaderOptionsPlugin({options: {}}),//для eslint
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: true,
-            compress: {
-                warnings: false, // Suppress uglification warnings
-                pure_getters: true,
-                unsafe: true,
-                unsafe_comps: true,
-                screw_ie8: true,
-                drop_console: false
-            },
-            output: {
-                comments: false,
-            },
-            exclude: [/\.min\.js$/gi] // skip pre-minified libs
-        }),
     ]
 };
+
+module.exports = settings;

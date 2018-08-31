@@ -3,13 +3,12 @@ $backColor: #333;
 
 .drag-card {
   box-sizing: border-box;
-  background: #f0f0f0;
+  background: white;
   border: 1px solid $backColor;
   border-radius: $radius;
   font-size: 12px;
   &__handle {
     cursor: move;
-    height: 18px;
     background: $backColor;
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
@@ -28,6 +27,24 @@ $backColor: #333;
     overflow-y: auto;
     font-size: 14px;
     line-height: 1.1;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
+  }
+}
+
+.connection-title {
+  transform-origin: left bottom;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: none;
+  text-align: center;
+  padding: 0 18px;
+  height: 14px;
+  font-size: 12px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: transparent;
   }
 }

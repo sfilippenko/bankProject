@@ -28,7 +28,7 @@ export default class CheckboxWrapper extends React.Component {
     }
 
     render() {
-        const {value, disabled, readonly} = this.props;
+        const {value, disabled, readonly, text} = this.props;
         return (
             <label style={{height: 36, margin: 0}}>
                 <Toggle
@@ -36,6 +36,8 @@ export default class CheckboxWrapper extends React.Component {
                     onChange={this.onChange}
                     disabled={!!(disabled || readonly)}
                 />
+                {text && <span style={{marginLeft: 10, fontWeight: 'normal'}}>{text}</span>}
+                <br/>
             </label>
         );
     }

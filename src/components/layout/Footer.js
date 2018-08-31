@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
             <div className='footer'>
                 <div className='container-custom' style={{lineHeight: '58px', maxWidth}}>
                     {
-                        btns.map(({className = '', text, onClick, visible = true}, index) => {
+                        btns.map(({className = '', text, onClick, visible = true, disabled}, index) => {
                             if (visible) return (
                                 <Button
                                     key={index}
@@ -17,6 +17,7 @@ export default class Footer extends React.Component {
                                     onClick={onClick}
                                     bsSize='lg'
                                     style={{marginRight: 10}}
+                                    disabled={disabled}
                                 >
                                     {text}
                                 </Button>

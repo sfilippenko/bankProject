@@ -12,6 +12,10 @@ export default class Header extends React.Component {
                         <div id='burger-button-wrapper' style={{width: 30, height: 20, marginTop: 15, position: 'relative', float: 'left'}}></div>
                         <span style={{marginLeft: 10}}>{taskName}</span>
                     </div>
+                    <div className='pull-right header-custom__user'>
+                        <span style={{marginRight: 10, color: 'white'}}>Иван Степан</span>
+                        <Button>Выйти</Button>
+                    </div>
                     <div className='clearfix'/>
                 </div>
             </div>

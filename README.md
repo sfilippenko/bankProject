@@ -1,6 +1,6 @@
 # bankProject
 
-That's a small part of the project i developed at work
+Visual representation of client cards
 
 ```
 ## Deployment

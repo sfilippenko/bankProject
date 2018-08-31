@@ -45,6 +45,32 @@ const styles = {
 
 export default class OuterContainer extends React.Component {
 
+    state = {showScrollTopArea: false, scrollTopAreaWidth: 0};
+
+    onWindowScroll = () => {
+        const {showScrollTopArea} = this.state;
+        const scrollTop = document.documentElement.scrollTop;
+        if (scrollTop > 0 && !showScrollTopArea) this.setState({showScrollTopArea: true});
+        else if (scrollTop === 0 && showScrollTopArea) this.setState({showScrollTopArea: false});
+        this.onWindowResize();
+    };
+
+    onWindowResize = () => {
+        const {scrollTopAreaWidth} = this.state;
+        const pageWrapContainer = document.getElementById('page-wrap-container');
+        const windowWidth = window.innerWidth;
+        const containerWidth = pageWrapContainer.clientWidth;
+        const width = (parseInt(windowWidth) - parseInt(containerWidth)) / 2 + 10;
+        if (width !== scrollTopAreaWidth) {
+            this.setState({scrollTopAreaWidth: width});
+        }
+    };
+
+    onScrollTopClick = () => {
+        this.setState({showScrollTopArea: false});
+        window.scrollTo(0, 0);
+    };
+
     onClick = ({target}) => {
         if (target.tagName === 'A') this.refs.menu.setState({isOpen: false});
     };
@@ -54,10 +80,20 @@ export default class OuterContainer extends React.Component {
         const wrap = document.getElementById('burger-button-wrapper');
         btn.parentNode.removeChild(btn);
         wrap.appendChild(btn);
+        window.addEventListener('scroll', this.onWindowScroll);
+        window.addEventListener('resize', this.onWindowResize);
+        this.onWindowScroll();
+        this.onWindowResize();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onWindowScroll);
+        window.removeEventListener('resize', this.onWindowResize);
     }
 
     render() {
-        const {children, style, taskName = '', maxWidth = 1400} = this.props;
+        const {children, style = {}, taskName = '', maxWidth = 1400} = this.props;
+        const {showScrollTopArea, scrollTopAreaWidth} = this.state;
         return (
             <div id='outer-container'>
                 <Menu
@@ -67,16 +103,18 @@ export default class OuterContainer extends React.Component {
                     styles={styles}
                 >
                     <ul className='nav nav-pills nav-stacked' onClick={this.onClick}>
-                        <li><Link to='/'>Карточка должника</Link></li>
-                        <li><Link to='/drawing'>Рисовалка</Link></li>
+                        <li><Link to='/'>Главная</Link></li>
+                        <li><Link to='/404'>404</Link></li>
                     </ul>
                 </Menu>
                 <div id='page-wrap' style={{paddingTop: 50}}>
                     <Header taskName={taskName} maxWidth={maxWidth}/>
-                    <div className='container-custom' style={{maxWidth, ...style}}>
+                    <div id='page-wrap-container' className='container-custom' style={{maxWidth, ...style}}>
                         {children}
                     </div>
                 </div>
+                {showScrollTopArea &&
+                <div id='scroll-top-area' onClick={this.onScrollTopClick} style={{width: scrollTopAreaWidth}}/>}
             </div>
         );
     }
