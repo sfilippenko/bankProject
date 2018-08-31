@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
     "start": "node server",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm run build"
   },
   "engines": {
     "node": "6.10.0"
