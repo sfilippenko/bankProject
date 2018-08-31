@@ -14,7 +14,24 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "express": "4.16.3",
+    "html2canvas": "1.0.0-alpha.4",
+    "immutable": "3.8.1",
+    "react": "15.6.1",
+    "react-bootstrap": "0.31.3",
+    "react-burger-menu": "2.1.6",
+    "react-dom": "15.6.1",
+    "react-draggable": "3.0.3",
+    "react-redux": "5.0.6",
+    "react-router": "3.0.2",
+    "react-router-redux": "4.0.8",
+    "react-toggle": "4.0.1",
+    "react-tooltip": "3.3.0",
+    "redux": "3.7.2",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.2.0",
+
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-loader": "7.1.2",
@@ -37,23 +54,5 @@
     "webpack": "4.5.0",
     "webpack-cli": "2.0.13",
     "webpack-dev-server": "3.1.1"
-  },
-  "dependencies": {
-    "express": "4.16.3",
-    "html2canvas": "1.0.0-alpha.4",
-    "immutable": "3.8.1",
-    "react": "15.6.1",
-    "react-bootstrap": "0.31.3",
-    "react-burger-menu": "2.1.6",
-    "react-dom": "15.6.1",
-    "react-draggable": "3.0.3",
-    "react-redux": "5.0.6",
-    "react-router": "3.0.2",
-    "react-router-redux": "4.0.8",
-    "react-toggle": "4.0.1",
-    "react-tooltip": "3.3.0",
-    "redux": "3.7.2",
-    "redux-logger": "3.0.6",
-    "redux-thunk": "2.2.0"
   }
 }
